@@ -1,10 +1,11 @@
 import axios from 'axios';
 
 const unwrap = (response) => response.data?.data ?? response.data;
-
 export const api = axios.create({
-  baseURL: '/api',
-  timeout: 90000
+  baseURL: `${import.meta.env.VITE_API_URL}/api`,
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
 api.interceptors.request.use((config) => {
