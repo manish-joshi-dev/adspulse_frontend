@@ -35,8 +35,8 @@ export const ScoreGauge = ({ score = 0, scoreBand = 'Average', size = 200 }) => 
     const centerY = canvas.height / 2;
     const radius = 80;
     const startAngle = Math.PI * 1.25; // 225 degrees
-    const endAngle = Math.PI * 0.25; // -45 degrees (relative to start)
-    const totalAngle = Math.PI * 1.5; // 270 degrees total sweep
+    const endAngle = Math.PI * 0.25;   // -45 degrees (relative to start)
+    const totalAngle = Math.PI * 1.5;  // 270 degrees total sweep
 
     // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -53,7 +53,7 @@ export const ScoreGauge = ({ score = 0, scoreBand = 'Average', size = 200 }) => 
     // Progress arc
     const progressAngle = (score / 100) * totalAngle;
     const color = getColor(score);
-    
+
     // Create gradient
     const gradient = ctx.createLinearGradient(
       centerX - radius, centerY,
@@ -68,7 +68,7 @@ export const ScoreGauge = ({ score = 0, scoreBand = 'Average', size = 200 }) => 
     ctx.arc(centerX, centerY, radius, startAngle, startAngle + progressAngle, false);
     ctx.stroke();
 
-    // Score text - use CSS variable for color
+    // Score text
     const textColor = isDark ? '#F1F5F9' : '#0F172A';
     ctx.fillStyle = textColor;
     ctx.font = `bold 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
@@ -101,29 +101,7 @@ export const ScoreGauge = ({ score = 0, scoreBand = 'Average', size = 200 }) => 
           { label: 'Good', color: '#34D399' },
           { label: 'Excellent', color: '#10B981' }
         ].map((band) => (
-          <div
-            key={band.label}
-            className="text-center"
-          >
-            <div
-              className="w-3 h-3 rounded-full mx-auto mb-1"
-              style={{ background: band.color }}
-            />
-            <p
-              className="text-xs font-medium"
-              style={{ color: 'var(--color-text-secondary)' }}
-            >
-              {band.label.split(' ')[0]}
-            </p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-export default ScoreGauge;
-          >
+          <div key={band.label} className="text-center">
             <div
               className="w-3 h-3 rounded-full mx-auto mb-1"
               style={{ background: band.color }}
