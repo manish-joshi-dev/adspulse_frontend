@@ -24,20 +24,20 @@ export const AnomalyList = ({ anomalies = [] }) => (
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
                 <h3 className="text-sm font-semibold text-ink">{anomaly.label}</h3>
-                <p className="text-sm text-zinc-500">{anomaly.entity}</p>
+                <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>{anomaly.entity}</p>
               </div>
               <span className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-xs font-semibold ${severityTone(anomaly.severity)}`}>
                 <DirectionIcon direction={anomaly.direction} />
                 {formatPercent(anomaly.changePercent)}
               </span>
             </div>
-            <p className="mt-3 text-sm text-zinc-600">
+            <p className="mt-3 text-sm" style={{ color: 'var(--color-text-secondary)' }}>
               {formatNumber(anomaly.previous)} to {formatNumber(anomaly.current)}
             </p>
           </article>
         ))
       ) : (
-        <p className="rounded-lg bg-cloud p-4 text-sm text-zinc-500">No material movement detected.</p>
+        <p className="rounded-lg p-4 text-sm" style={{ background: 'var(--color-bg-secondary)', color: 'var(--color-text-secondary)' }}>No material movement detected.</p>
       )}
     </div>
   </section>

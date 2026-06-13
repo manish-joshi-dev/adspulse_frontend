@@ -1,18 +1,15 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine, CartesianGrid } from 'recharts';
-import { useTheme } from '../../context/ThemeContext.jsx';
 
 export const BenchmarkBarChart = ({ data, metricKey, benchmarkValue }) => {
-  const { isDark } = useTheme();
-
-  // Dynamic colors based on theme
+  // Dark mode hardcoded
   const colors = {
-    gridStroke: isDark ? '#1E2D45' : '#E2E8F0',
-    axisColor: isDark ? '#475569' : '#94A3B8',
-    tooltipBg: isDark ? '#1A2235' : '#FFFFFF',
-    tooltipBorder: isDark ? '#1E2D45' : '#E2E8F0',
-    tooltipText: isDark ? '#F1F5F9' : '#0F172A',
-    barColor: isDark ? '#4F8EF7' : '#2563EB',
-    referenceColor: isDark ? '#F87171' : '#EF4444',
+    gridStroke: '#1E2D45',
+    axisColor: '#475569',
+    tooltipBg: '#1A2235',
+    tooltipBorder: '#1E2D45',
+    tooltipText: '#F1F5F9',
+    barColor: '#4F8EF7',
+    referenceColor: '#F87171',
   };
 
   return (

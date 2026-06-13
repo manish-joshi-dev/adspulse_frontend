@@ -2,47 +2,8 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-/* LIGHT MODE - DEFAULT */
+/* DARK MODE - DEFAULT (Always) */
 :root {
-  --color-bg-primary: #F8FAFC;
-  --color-bg-secondary: #FFFFFF;
-  --color-bg-elevated: #F1F5F9;
-  --color-border: #E2E8F0;
-  --color-border-hover: #CBD5E1;
-
-  --color-accent-primary: #2563EB;
-  --color-accent-success: #10B981;
-  --color-accent-warning: #F59E0B;
-  --color-accent-critical: #EF4444;
-  --color-accent-info: #3B82F6;
-  --color-accent-purple: #8B5CF6;
-
-  --color-text-primary: #0F172A;
-  --color-text-secondary: #64748B;
-  --color-text-muted: #94A3B8;
-
-  --color-sidebar-bg: #1E293B;
-  --color-sidebar-text: #F1F5F9;
-  --color-sidebar-active: #3B82F6;
-  --color-sidebar-hover: #334155;
-
-  --shadow-card: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.06);
-  --shadow-elevated: 0 8px 32px rgba(0,0,0,0.12);
-
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
-
-  --transition-fast: 150ms ease;
-  --transition-base: 250ms ease;
-
-  --font-display: 'Inter', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
-}
-
-/* DARK MODE */
-.dark {
   --color-bg-primary: #0A0E1A;
   --color-bg-secondary: #111827;
   --color-bg-elevated: #1A2235;
@@ -65,15 +26,31 @@
   --color-sidebar-active: #4F8EF7;
   --color-sidebar-hover: #1A2235;
 
+  /* Additional semantic colors for components - dark mode */
+  --color-ink: #F1F5F9;
+  --color-cloud: #1A2235;
+  --color-signal: #34D399;
+  --color-signal-dark: #10B981;
+  --color-amber-tone: #FBBF24;
+  --color-rose-tone: #F87171;
+  --color-bg-hover: #1E2D45;
+  --color-border-light: #2A3F5F;
+  --color-text-subtle: #94A3B8;
+  --color-text-disabled: #475569;
+
   --shadow-card: 0 1px 3px rgba(0,0,0,0.4), 0 4px 16px rgba(0,0,0,0.3);
   --shadow-elevated: 0 8px 32px rgba(0,0,0,0.5);
-}
 
-/* Smooth transitions when switching modes */
-*,
-*::before,
-*::after {
-  transition: background-color 250ms ease, border-color 250ms ease, color 150ms ease;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+
+  --font-display: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 }
 
 * {

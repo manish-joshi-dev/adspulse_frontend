@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
-import { useTheme } from '../../context/ThemeContext.jsx';
+
 
 /**
  * Animated SVG arc gauge showing performance score (0-100)
  * Used in landing page and app for visual score representation
- * Supports light and dark themes
+ * Dark mode only
  */
 export const PerformanceGauge = ({ score = 75, size = 200, animated = true }) => {
   const [displayScore, setDisplayScore] = useState(animated ? 0 : score);
-  const { isDark } = useTheme();
   
   useEffect(() => {
     if (!animated) return;
@@ -50,7 +49,7 @@ export const PerformanceGauge = ({ score = 75, size = 200, animated = true }) =>
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference * (1 - displayScore / 100);
   const color = getColor(displayScore);
-  const bgArcColor = isDark ? '#1E2D45' : '#E2E8F0';
+  const bgArcColor = '#1E2D45'; // Dark mode hardcoded
 
   return (
     <div className="flex flex-col items-center gap-3">

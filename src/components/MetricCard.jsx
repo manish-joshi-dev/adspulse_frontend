@@ -8,12 +8,12 @@ export const MetricCard = ({ label, value, helper, icon: Icon, tone = "text-sign
         <p className="mt-3 break-words text-2xl font-semibold text-ink">{value}</p>
       </div>
       {Icon ? (
-        <span className={clsx("flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-100", tone)}>
+        <span className={clsx("flex h-10 w-10 shrink-0 items-center justify-center rounded-lg", tone)} style={{ background: 'var(--color-bg-primary)' }}>
           <Icon className="h-5 w-5" aria-hidden="true" />
         </span>
       ) : null}
     </div>
-    {helper ? <p className="mt-4 text-sm text-zinc-500">{helper}</p> : null}
+    {helper ? <p className="mt-4 text-sm" style={{ color: 'var(--color-text-secondary)' }}>{helper}</p> : null}
   </article>
 );
 

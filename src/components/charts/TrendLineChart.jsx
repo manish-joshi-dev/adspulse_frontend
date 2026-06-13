@@ -1,16 +1,13 @@
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
-import { useTheme } from '../../context/ThemeContext.jsx';
 
 export const TrendLineChart = ({ data, lines }) => {
-  const { isDark } = useTheme();
-
-  // Dynamic colors based on theme
+  // Dark mode hardcoded
   const colors = {
-    gridStroke: isDark ? '#1E2D45' : '#E2E8F0',
-    axisColor: isDark ? '#475569' : '#94A3B8',
-    tooltipBg: isDark ? '#1A2235' : '#FFFFFF',
-    tooltipBorder: isDark ? '#1E2D45' : '#E2E8F0',
-    tooltipText: isDark ? '#F1F5F9' : '#0F172A',
+    gridStroke: '#1E2D45',
+    axisColor: '#475569',
+    tooltipBg: '#1A2235',
+    tooltipBorder: '#1E2D45',
+    tooltipText: '#F1F5F9',
   };
 
   return (

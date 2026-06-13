@@ -16,8 +16,8 @@ export const Button = ({
   
   const variants = {
     primary: 'bg-signal text-white hover:bg-signal/90 focus:ring-signal',
-    secondary: 'bg-white border border-zinc-300 text-zinc-700 hover:bg-cloud focus:ring-zinc-400',
-    ghost: 'text-zinc-600 hover:bg-cloud hover:text-ink',
+    secondary: 'bg-bg-secondary border border-border-light text-text-primary hover:bg-bg-hover focus:ring-accent-primary',
+    ghost: 'text-text-subtle hover:bg-bg-hover hover:text-ink',
     danger: 'bg-rose text-white hover:bg-rose/90 focus:ring-rose'
   };
 

@@ -1,13 +1,12 @@
 import { useEffect, useRef } from 'react';
-import { useTheme } from '../../context/ThemeContext.jsx';
+
 
 /**
  * ScoreGauge - SVG arc gauge showing performance score 0-100
- * Supports light and dark themes
+ * Dark mode only
  */
 export const ScoreGauge = ({ score = 0, scoreBand = 'Average', size = 200 }) => {
   const canvasRef = useRef(null);
-  const { isDark } = useTheme();
 
   // Determine color based on score
   const getColor = (value) => {
@@ -41,8 +40,8 @@ export const ScoreGauge = ({ score = 0, scoreBand = 'Average', size = 200 }) => 
     // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Background arc color based on theme
-    const bgColor = isDark ? 'rgba(30, 45, 69, 0.5)' : 'rgba(226, 232, 240, 0.7)';
+    // Background arc color (dark mode)
+    const bgColor = 'rgba(30, 45, 69, 0.5)';
     ctx.strokeStyle = bgColor;
     ctx.lineWidth = 12;
     ctx.lineCap = 'round';
@@ -68,22 +67,22 @@ export const ScoreGauge = ({ score = 0, scoreBand = 'Average', size = 200 }) => 
     ctx.arc(centerX, centerY, radius, startAngle, startAngle + progressAngle, false);
     ctx.stroke();
 
-    // Score text
-    const textColor = isDark ? '#F1F5F9' : '#0F172A';
+    // Score text (dark mode)
+    const textColor = '#F1F5F9';
     ctx.fillStyle = textColor;
     ctx.font = `bold 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText(`${Math.round(score)}`, centerX, centerY - 10);
 
-    // Band label
-    const labelColor = isDark ? '#94A3B8' : '#64748B';
+    // Band label (dark mode)
+    const labelColor = '#94A3B8';
     ctx.fillStyle = labelColor;
     ctx.font = `14px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
     ctx.fillText(scoreBand, centerX, centerY + 15);
-  }, [score, scoreBand, isDark]);
+  }, [score, scoreBand]);
 
   return (
     <div className="flex flex-col items-center">
@@ -118,5 +117,6 @@ export const ScoreGauge = ({ score = 0, scoreBand = 'Average', size = 200 }) => 
     </div>
   );
 };
+
 
 export default ScoreGauge;

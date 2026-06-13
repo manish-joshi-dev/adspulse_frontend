@@ -1,6 +1,5 @@
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
-import ThemeToggle from '../ui/ThemeToggle.jsx';
 
 export const TopBar = ({ title, breadcrumb, actions }) => {
   return (
@@ -32,9 +31,8 @@ export const TopBar = ({ title, breadcrumb, actions }) => {
         )}
       </div>
 
-      {/* Actions with Theme Toggle */}
+      {/* Actions */}
       <div className="flex items-center gap-2">
-        <ThemeToggle />
         {actions && actions.length > 0 && (
           <>
             {actions.map((action, index) => (

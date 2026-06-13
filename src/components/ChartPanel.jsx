@@ -21,7 +21,7 @@ export const TrendChart = ({ data = [] }) => (
   <section className="panel p-6">
     <div className="mb-5 flex items-center justify-between gap-4">
       <div>
-        <p className="text-sm font-medium uppercase text-zinc-500">Trend</p>
+        <p className="text-sm font-medium uppercase text-text-subtle">Trend</p>
         <h2 className="mt-1 text-xl font-semibold text-ink">Daily clicks and conversions</h2>
       </div>
     </div>
@@ -42,7 +42,7 @@ export const TrendChart = ({ data = [] }) => (
           </LineChart>
         </ResponsiveContainer>
       ) : (
-        <div className="flex h-full items-center justify-center rounded-lg bg-cloud text-sm text-zinc-500">
+        <div className="flex h-full items-center justify-center rounded-lg bg-bg-hover text-sm text-text-subtle">
           No dated rows found.
         </div>
       )}
@@ -53,7 +53,7 @@ export const TrendChart = ({ data = [] }) => (
 export const CampaignSpendChart = ({ data = [] }) => (
   <section className="panel p-6">
     <div className="mb-5">
-      <p className="text-sm font-medium uppercase text-zinc-500">Campaigns</p>
+      <p className="text-sm font-medium uppercase text-text-subtle">Campaigns</p>
       <h2 className="mt-1 text-xl font-semibold text-ink">Spend by top campaigns</h2>
     </div>
     <div className="h-80 w-full">
@@ -71,7 +71,7 @@ export const CampaignSpendChart = ({ data = [] }) => (
           </BarChart>
         </ResponsiveContainer>
       ) : (
-        <div className="flex h-full items-center justify-center rounded-lg bg-cloud text-sm text-zinc-500">
+        <div className="flex h-full items-center justify-center rounded-lg bg-bg-hover text-sm text-text-subtle">
           No campaign rows found.
         </div>
       )}

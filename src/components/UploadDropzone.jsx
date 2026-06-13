@@ -34,13 +34,13 @@ export const UploadDropzone = ({ onUpload, isUploading }) => {
           <p className="text-sm font-medium uppercase text-signal">New diagnostic</p>
           <h1 className="mt-2 text-3xl font-semibold text-ink sm:text-4xl">Campaign health snapshot</h1>
         </div>
-        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-zinc-100 text-signal">
+        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg text-signal" style={{ background: 'var(--color-bg-secondary)' }}>
           <UploadCloud className="h-6 w-6" aria-hidden="true" />
         </span>
       </div>
 
-      <div className="rounded-lg border border-dashed border-zinc-300 bg-cloud p-6 text-center">
-        <FileText className="mx-auto h-8 w-8 text-zinc-500" aria-hidden="true" />
+      <div className="rounded-lg border border-dashed border-border-light bg-bg-hover p-6 text-center">
+        <FileText className="mx-auto h-8 w-8 text-text-subtle" aria-hidden="true" />
         <p className="mt-3 text-base font-medium text-ink">
           {isDragActive ? "Drop CSV" : "Google Ads CSV"}
         </p>
@@ -49,13 +49,13 @@ export const UploadDropzone = ({ onUpload, isUploading }) => {
             type="button"
             onClick={open}
             disabled={isUploading}
-            className="focus-ring inline-flex h-10 items-center justify-center rounded-lg bg-ink px-4 text-sm font-semibold text-white transition hover:bg-zinc-800 disabled:cursor-not-allowed"
+            className="focus-ring inline-flex h-10 items-center justify-center rounded-lg bg-accent-primary px-4 text-sm font-semibold text-white transition hover:bg-accent-primary/90 disabled:cursor-not-allowed"
           >
             {isUploading ? "Analyzing" : "Choose file"}
           </button>
           <a
             href="/sample-google-ads.csv"
-            className="focus-ring inline-flex h-10 items-center justify-center rounded-lg border border-zinc-300 px-4 text-sm font-semibold text-ink transition hover:bg-white"
+            className="focus-ring inline-flex h-10 items-center justify-center rounded-lg border border-border-light px-4 text-sm font-semibold text-text-primary transition hover:bg-bg-secondary"
           >
             Sample CSV
           </a>

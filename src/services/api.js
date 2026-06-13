@@ -60,6 +60,9 @@ export const upload = {
     formData.append('file', file);
 
     return api.post('/upload/csv', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      },
       onUploadProgress: (progressEvent) => {
         if (!onProgress) return;
 

@@ -16,13 +16,13 @@ export const InsightsList = ({ recommendations = [] }) => {
   return (
     <section className="panel p-6">
       <div className="mb-5">
-        <p className="text-sm font-medium uppercase text-zinc-500">Actions</p>
+        <p className="text-sm font-medium uppercase" style={{ color: 'var(--color-text-secondary)' }}>Actions</p>
         <h2 className="mt-1 text-xl font-semibold text-ink">Recommended fixes</h2>
       </div>
       <div className="space-y-4">
         {sorted.length > 0 ? (
           sorted.map((item) => (
-            <article key={`${item.title}-${item.priority}`} className="rounded-lg border border-zinc-200 p-4">
+            <article key={`${item.title}-${item.priority}`} className="rounded-lg border p-4" style={{ borderColor: 'var(--color-border)' }}>
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <h3 className="max-w-xl text-base font-semibold text-ink">{item.title}</h3>
                 <span className={clsx("rounded-full border px-2.5 py-1 text-xs font-semibold", priorityClass(item.priority))}>

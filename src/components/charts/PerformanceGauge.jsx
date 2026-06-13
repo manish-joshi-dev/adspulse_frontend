@@ -33,7 +33,7 @@ export const PerformanceGauge = ({ score = 0, size = 200, animated = true }) => 
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         <span ref={ref} className="text-4xl font-bold">{animated ? 0 : score}</span>
-        <span className="text-xs uppercase font-medium text-zinc-500">Score</span>
+        <span className="text-xs uppercase font-medium" style={{ color: 'var(--color-text-secondary)' }}>Score</span>
       </div>
     </div>
   );

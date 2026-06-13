@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext.jsx';
 import { LogOut, BarChart3, Plus, History, FileText } from 'lucide-react';
-import ThemeToggle from '../ui/ThemeToggle.jsx';
+
 
 export const Sidebar = ({ onClose }) => {
   const { user, logout } = useAuth();
@@ -85,22 +85,11 @@ export const Sidebar = ({ onClose }) => {
         </div>
       </nav>
 
-      {/* Theme Toggle + User profile + logout */}
+      {/* User profile + logout */}
       <div 
         className="p-6 border-t space-y-3"
         style={{ borderColor: 'var(--color-border)' }}
       >
-        {/* Theme Toggle */}
-        <div className="flex items-center gap-2 px-4 py-2">
-          <span 
-            className="text-xs font-semibold uppercase tracking-wide flex-1"
-            style={{ color: 'var(--color-text-secondary)' }}
-          >
-            Theme
-          </span>
-          <ThemeToggle />
-        </div>
-
         {/* User profile card */}
         <div 
           className="px-4 py-3 rounded-lg border"

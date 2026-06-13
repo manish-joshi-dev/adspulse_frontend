@@ -5,5 +5,5 @@ export const SkeletonLoader = ({ variant = 'text', className = '' }) => {
     'table-row': 'h-12 w-full rounded',
     gauge: 'h-32 w-32 rounded-full'
   };
-  return <div className={`animate-pulse bg-zinc-200 ${variants[variant]} ${className}`} />;
+  return <div className={`animate-pulse ${variants[variant]} ${className}`} style={{ background: 'var(--color-bg-secondary)' }} />;
 };
