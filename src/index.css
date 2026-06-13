@@ -2,60 +2,78 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+/* LIGHT MODE - DEFAULT */
 :root {
-  --color-bg-primary: #0A0E1A;         /* Near-black navy — main background */
-  --color-bg-secondary: #111827;        /* Slightly lighter — card backgrounds */
-  --color-bg-elevated: #1A2235;         /* Elevated cards/modals */
-  --color-border: #1E2D45;              /* Subtle borders */
-  --color-border-hover: #2A3F5F;
-  
-  --color-accent-primary: #4F8EF7;      /* Google Blue — primary actions */
-  --color-accent-success: #34D399;      /* Green — healthy metrics */
-  --color-accent-warning: #FBBF24;      /* Amber — warnings */
-  --color-accent-critical: #F87171;     /* Red — critical issues */
-  --color-accent-info: #60A5FA;
-  --color-accent-purple: #A78BFA;       /* AI/Gemini features */
-  
-  --color-text-primary: #F1F5F9;
-  --color-text-secondary: #94A3B8;
-  --color-text-muted: #475569;
-  
-  --font-display: 'Inter', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
-  
+  --color-bg-primary: #F8FAFC;
+  --color-bg-secondary: #FFFFFF;
+  --color-bg-elevated: #F1F5F9;
+  --color-border: #E2E8F0;
+  --color-border-hover: #CBD5E1;
+
+  --color-accent-primary: #2563EB;
+  --color-accent-success: #10B981;
+  --color-accent-warning: #F59E0B;
+  --color-accent-critical: #EF4444;
+  --color-accent-info: #3B82F6;
+  --color-accent-purple: #8B5CF6;
+
+  --color-text-primary: #0F172A;
+  --color-text-secondary: #64748B;
+  --color-text-muted: #94A3B8;
+
+  --color-sidebar-bg: #1E293B;
+  --color-sidebar-text: #F1F5F9;
+  --color-sidebar-active: #3B82F6;
+  --color-sidebar-hover: #334155;
+
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.06);
+  --shadow-elevated: 0 8px 32px rgba(0,0,0,0.12);
+
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 16px;
   --radius-xl: 24px;
-  
-  --shadow-card: 0 1px 3px rgba(0,0,0,0.4), 0 4px 16px rgba(0,0,0,0.3);
-  --shadow-elevated: 0 8px 32px rgba(0,0,0,0.5);
-  
+
   --transition-fast: 150ms ease;
   --transition-base: 250ms ease;
+
+  --font-display: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 }
 
-/* Light theme — clean, crisp whites and cool greys */
-[data-theme="light"] {
-  --color-bg-primary: #F8FAFC;          /* Cool white — main background */
-  --color-bg-secondary: #FFFFFF;         /* Pure white — card backgrounds */
-  --color-bg-elevated: #F1F5F9;         /* Light grey — elevated cards */
-  --color-border: #E2E8F0;              /* Soft silver borders */
-  --color-border-hover: #CBD5E1;
-  
-  --color-accent-primary: #2563EB;      /* Bold blue — primary actions */
-  --color-accent-success: #10B981;      /* Green — healthy metrics */
-  --color-accent-warning: #F59E0B;      /* Amber — warnings */
-  --color-accent-critical: #EF4444;     /* Red — critical issues */
-  --color-accent-info: #3B82F6;
-  --color-accent-purple: #8B5CF6;       /* AI/Gemini features */
-  
-  --color-text-primary: #0F172A;        /* Near-black — primary text */
-  --color-text-secondary: #64748B;       /* Slate grey — secondary text */
-  --color-text-muted: #94A3B8;          /* Muted text */
-  
-  --shadow-card: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.05);
-  --shadow-elevated: 0 8px 32px rgba(0,0,0,0.08);
+/* DARK MODE */
+.dark {
+  --color-bg-primary: #0A0E1A;
+  --color-bg-secondary: #111827;
+  --color-bg-elevated: #1A2235;
+  --color-border: #1E2D45;
+  --color-border-hover: #2A3F5F;
+
+  --color-accent-primary: #4F8EF7;
+  --color-accent-success: #34D399;
+  --color-accent-warning: #FBBF24;
+  --color-accent-critical: #F87171;
+  --color-accent-info: #60A5FA;
+  --color-accent-purple: #A78BFA;
+
+  --color-text-primary: #F1F5F9;
+  --color-text-secondary: #94A3B8;
+  --color-text-muted: #475569;
+
+  --color-sidebar-bg: #0D1117;
+  --color-sidebar-text: #F1F5F9;
+  --color-sidebar-active: #4F8EF7;
+  --color-sidebar-hover: #1A2235;
+
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.4), 0 4px 16px rgba(0,0,0,0.3);
+  --shadow-elevated: 0 8px 32px rgba(0,0,0,0.5);
+}
+
+/* Smooth transitions when switching modes */
+*,
+*::before,
+*::after {
+  transition: background-color 250ms ease, border-color 250ms ease, color 150ms ease;
 }
 
 * {
@@ -88,61 +106,19 @@ textarea {
   font: inherit;
 }
 
-/* Tailwind component overrides */
-@layer base {
-  body {
-    @apply bg-[#0A0E1A] text-[#F1F5F9];
-  }
+/* Base HTML/body styles */
+html {
+  scroll-behavior: smooth;
 }
 
-@layer components {
-  .panel {
-    @apply bg-[#111827] border border-[#1E2D45] rounded-[16px] transition-all;
-  }
-
-  .panel-hover {
-    @apply hover:border-[#2A3F5F] hover:shadow-[0_1px_3px_rgba(0,0,0,0.4),_0_4px_16px_rgba(0,0,0,0.3)];
-  }
-
-  .btn-primary {
-    @apply bg-[#4F8EF7] text-white font-medium px-4 py-2 rounded-[10px] hover:bg-[#3d7be3] active:scale-95 transition-all;
-  }
-
-  .btn-secondary {
-    @apply bg-[#1E2D45] text-[#F1F5F9] border border-[#2A3F5F] font-medium px-4 py-2 rounded-[10px] hover:bg-[#2A3F5F] active:scale-95 transition-all;
-  }
-
-  .btn-ghost {
-    @apply text-[#4F8EF7] font-medium px-4 py-2 rounded-[10px] hover:bg-[#4F8EF7]/10 active:scale-95 transition-all;
-  }
-
-  .input-base {
-    @apply w-full bg-[#1A2235] border border-[#1E2D45] rounded-[10px] px-4 py-2 text-[#F1F5F9] placeholder-[#475569] focus:outline-none focus:border-[#4F8EF7] focus:ring-2 focus:ring-[#4F8EF7]/20 transition-all;
-  }
-
-  .badge {
-    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold;
-  }
-
-  .badge-success {
-    @apply bg-[#34D399]/10 text-[#34D399];
-  }
-
-  .badge-warning {
-    @apply bg-[#FBBF24]/10 text-[#FBBF24];
-  }
-
-  .badge-critical {
-    @apply bg-[#F87171]/10 text-[#F87171];
-  }
-
-  .badge-info {
-    @apply bg-[#60A5FA]/10 text-[#60A5FA];
-  }
-
-  .focus-ring {
-    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4F8EF7] focus-visible:ring-offset-2;
-  }
+body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-display);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Animations */

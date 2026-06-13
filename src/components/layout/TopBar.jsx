@@ -1,5 +1,6 @@
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
+import ThemeToggle from '../ui/ThemeToggle.jsx';
 
 export const TopBar = ({ title, breadcrumb, actions }) => {
   return (
@@ -10,27 +11,40 @@ export const TopBar = ({ title, breadcrumb, actions }) => {
           <nav className="flex items-center gap-2 mb-2">
             {breadcrumb.map((item, index) => (
               <React.Fragment key={index}>
-                {index > 0 && <ChevronRight className="w-4 h-4 text-[#475569]" />}
-                <span className={index === breadcrumb.length - 1 ? 'text-[#F1F5F9] font-medium' : 'text-[#94A3B8]'}>
+                {index > 0 && <ChevronRight className="w-4 h-4" style={{ color: 'var(--color-text-muted)' }} />}
+                <span 
+                  className="font-medium"
+                  style={{ color: index === breadcrumb.length - 1 ? 'var(--color-text-primary)' : 'var(--color-text-secondary)' }}
+                >
                   {item}
                 </span>
               </React.Fragment>
             ))}
           </nav>
         )}
-        {title && <h1 className="text-2xl font-bold text-[#F1F5F9]">{title}</h1>}
+        {title && (
+          <h1 
+            className="text-2xl font-bold"
+            style={{ color: 'var(--color-text-primary)' }}
+          >
+            {title}
+          </h1>
+        )}
       </div>
 
-      {/* Actions */}
-      {actions && actions.length > 0 && (
-        <div className="flex items-center gap-2">
-          {actions.map((action, index) => (
-            <React.Fragment key={index}>
-              {action}
-            </React.Fragment>
-          ))}
-        </div>
-      )}
+      {/* Actions with Theme Toggle */}
+      <div className="flex items-center gap-2">
+        <ThemeToggle />
+        {actions && actions.length > 0 && (
+          <>
+            {actions.map((action, index) => (
+              <React.Fragment key={index}>
+                {action}
+              </React.Fragment>
+            ))}
+          </>
+        )}
+      </div>
     </div>
   );
 };

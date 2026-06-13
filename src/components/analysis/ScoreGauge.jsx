@@ -1,26 +1,29 @@
 import { useEffect, useRef } from 'react';
+import { useTheme } from '../../context/ThemeContext.jsx';
 
 /**
  * ScoreGauge - SVG arc gauge showing performance score 0-100
+ * Supports light and dark themes
  */
 export const ScoreGauge = ({ score = 0, scoreBand = 'Average', size = 200 }) => {
   const canvasRef = useRef(null);
+  const { isDark } = useTheme();
 
   // Determine color based on score
   const getColor = (value) => {
     if (value >= 80) return '#10B981'; // Excellent - green
     if (value >= 60) return '#34D399'; // Good - teal
-    if (value >= 40) return '#FBBF24'; // Average - amber
+    if (value >= 40) return 'var(--color-accent-warning)'; // Average - amber
     if (value >= 20) return '#FB923C'; // Poor - orange
-    return '#F87171'; // Critical - red
+    return 'var(--color-accent-critical)'; // Critical - red
   };
 
   const bandColors = {
     'Excellent': '#10B981',
     'Good': '#34D399',
-    'Average': '#FBBF24',
+    'Average': 'var(--color-accent-warning)',
     'Poor': '#FB923C',
-    'Critical': '#F87171'
+    'Critical': 'var(--color-accent-critical)'
   };
 
   useEffect(() => {
@@ -38,8 +41,9 @@ export const ScoreGauge = ({ score = 0, scoreBand = 'Average', size = 200 }) => 
     // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Background arc
-    ctx.strokeStyle = 'rgba(30, 45, 69, 0.5)';
+    // Background arc color based on theme
+    const bgColor = isDark ? 'rgba(30, 45, 69, 0.5)' : 'rgba(226, 232, 240, 0.7)';
+    ctx.strokeStyle = bgColor;
     ctx.lineWidth = 12;
     ctx.lineCap = 'round';
     ctx.beginPath();
@@ -64,20 +68,22 @@ export const ScoreGauge = ({ score = 0, scoreBand = 'Average', size = 200 }) => 
     ctx.arc(centerX, centerY, radius, startAngle, startAngle + progressAngle, false);
     ctx.stroke();
 
-    // Score text
-    ctx.fillStyle = '#F1F5F9';
+    // Score text - use CSS variable for color
+    const textColor = isDark ? '#F1F5F9' : '#0F172A';
+    ctx.fillStyle = textColor;
     ctx.font = `bold 48px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText(`${Math.round(score)}`, centerX, centerY - 10);
 
     // Band label
-    ctx.fillStyle = '#94A3B8';
+    const labelColor = isDark ? '#94A3B8' : '#64748B';
+    ctx.fillStyle = labelColor;
     ctx.font = `14px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
     ctx.fillText(scoreBand, centerX, centerY + 15);
-  }, [score, scoreBand]);
+  }, [score, scoreBand, isDark]);
 
   return (
     <div className="flex flex-col items-center">
@@ -89,15 +95,34 @@ export const ScoreGauge = ({ score = 0, scoreBand = 'Average', size = 200 }) => 
       />
       <div className="mt-4 grid grid-cols-5 gap-2 w-full max-w-xs">
         {[
-          { label: 'Critical', color: '#F87171' },
+          { label: 'Critical', color: 'var(--color-accent-critical)' },
           { label: 'Poor', color: '#FB923C' },
-          { label: 'Average', color: '#FBBF24' },
+          { label: 'Average', color: 'var(--color-accent-warning)' },
           { label: 'Good', color: '#34D399' },
           { label: 'Excellent', color: '#10B981' }
         ].map((band) => (
           <div
             key={band.label}
             className="text-center"
+          >
+            <div
+              className="w-3 h-3 rounded-full mx-auto mb-1"
+              style={{ background: band.color }}
+            />
+            <p
+              className="text-xs font-medium"
+              style={{ color: 'var(--color-text-secondary)' }}
+            >
+              {band.label.split(' ')[0]}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default ScoreGauge;
           >
             <div
               className="w-3 h-3 rounded-full mx-auto mb-1"

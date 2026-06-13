@@ -63,15 +63,16 @@ export const LandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0E1A] text-[#F1F5F9] overflow-hidden">
+    <div className="min-h-screen overflow-hidden" style={{ background: 'var(--color-bg-primary)', color: 'var(--color-text-primary)' }}>
+
       {/* ============ HERO SECTION ============ */}
-      <section className="relative min-h-screen flex flex-col bg-[#0A0E1A] overflow-hidden">
+      <section className="relative min-h-screen flex flex-col overflow-hidden" style={{ background: 'var(--color-bg-primary)' }}>
         {/* Animated gradient orb background */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div
             className="absolute top-1/2 left-1/2 w-96 h-96 rounded-full -translate-x-1/2 -translate-y-1/2 opacity-40 blur-3xl"
             style={{
-              background: 'linear-gradient(135deg, #A78BFA 0%, #4F8EF7 100%)',
+              background: 'linear-gradient(135deg, var(--color-accent-purple) 0%, var(--color-accent-primary) 100%)',
               animation: 'float 6s ease-in-out infinite'
             }}
           />
@@ -80,23 +81,25 @@ export const LandingPage = () => {
         {/* Navigation */}
         <nav className="relative z-50 flex items-center justify-between px-6 py-4 md:px-12 md:py-6">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#4F8EF7] to-[#A78BFA] flex items-center justify-center">
+            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--color-accent-primary)] to-[var(--color-accent-purple)] flex items-center justify-center">
               <Activity className="w-6 h-6 text-white" />
             </div>
-            <span className="text-xl font-bold">AdsPulse</span>
+            <span className="text-xl font-bold" style={{ color: 'var(--color-text-primary)' }}>AdsPulse</span>
           </div>
 
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-4">
             <button
               onClick={() => navigate('/login')}
-              className="px-4 py-2 text-[#94A3B8] hover:text-[#F1F5F9] transition-colors"
+              className="px-4 py-2 transition-colors"
+              style={{ color: 'var(--color-text-secondary)' }}
             >
               Login
             </button>
             <button
               onClick={() => navigate('/register')}
-              className="px-6 py-2 bg-[#4F8EF7] text-white rounded-lg hover:bg-blue-600 transition-all transform hover:scale-105 font-semibold"
+              className="px-6 py-2 rounded-lg transition-all transform hover:scale-105 font-semibold text-white"
+              style={{ background: 'var(--color-accent-primary)' }}
             >
               Get Started Free
             </button>
@@ -106,12 +109,9 @@ export const LandingPage = () => {
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="md:hidden z-50"
+            style={{ color: 'var(--color-text-primary)' }}
           >
-            {mobileMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </nav>
 
@@ -120,23 +120,24 @@ export const LandingPage = () => {
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="md:hidden absolute top-16 left-0 right-0 bg-[#111827] border-b border-[#1E2D45] flex flex-col gap-4 p-6 z-40"
+            className="md:hidden absolute top-16 left-0 right-0 flex flex-col gap-4 p-6 z-40"
+            style={{
+              background: 'var(--color-bg-secondary)',
+              borderColor: 'var(--color-border)',
+              borderBottomWidth: '1px'
+            }}
           >
             <button
-              onClick={() => {
-                navigate('/login');
-                setMobileMenuOpen(false);
-              }}
-              className="text-left text-[#94A3B8] hover:text-[#F1F5F9]"
+              onClick={() => { navigate('/login'); setMobileMenuOpen(false); }}
+              className="text-left"
+              style={{ color: 'var(--color-text-secondary)' }}
             >
               Login
             </button>
             <button
-              onClick={() => {
-                navigate('/register');
-                setMobileMenuOpen(false);
-              }}
-              className="px-6 py-2 bg-[#4F8EF7] text-white rounded-lg hover:bg-blue-600 font-semibold w-full"
+              onClick={() => { navigate('/register'); setMobileMenuOpen(false); }}
+              className="px-6 py-2 rounded-lg font-semibold w-full text-white"
+              style={{ background: 'var(--color-accent-primary)' }}
             >
               Get Started Free
             </button>
@@ -154,14 +155,14 @@ export const LandingPage = () => {
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
               Diagnose.
               <br />
-              <span className="bg-gradient-to-r from-[#4F8EF7] to-[#A78BFA] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[var(--color-accent-primary)] to-[var(--color-accent-purple)] bg-clip-text text-transparent">
                 Optimize.
               </span>
               <br />
               Outperform.
             </h1>
 
-            <p className="text-xl md:text-2xl text-[#94A3B8] mb-8 leading-relaxed">
+            <p className="text-xl md:text-2xl mb-8 leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
               Upload your Google Ads export and get an AI-powered performance analysis in under 60 seconds.
             </p>
 
@@ -171,31 +172,37 @@ export const LandingPage = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={() => navigate('/register')}
-                className="px-8 py-4 bg-[#4F8EF7] text-white rounded-lg font-bold text-lg hover:bg-blue-600 transition-all shadow-lg"
+                className="px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-lg text-white"
+                style={{ background: 'var(--color-accent-primary)' }}
               >
                 Analyze My Campaigns
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
-                className="px-8 py-4 border-2 border-[#4F8EF7] text-[#4F8EF7] rounded-lg font-bold text-lg hover:bg-[#4F8EF7]/10 transition-all"
+                className="px-8 py-4 rounded-lg font-bold text-lg transition-all"
+                style={{
+                  border: '2px solid var(--color-accent-primary)',
+                  color: 'var(--color-accent-primary)',
+                  background: 'transparent'
+                }}
               >
                 See a Sample Report
               </motion.button>
             </div>
 
             {/* Stats Row */}
-            <div className="flex flex-wrap justify-center gap-6 md:gap-12 text-sm md:text-base text-[#94A3B8]">
+            <div className="flex flex-wrap justify-center gap-6 md:gap-12 text-sm md:text-base" style={{ color: 'var(--color-text-secondary)' }}>
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-[#34D399]" />
+                <CheckCircle2 className="w-5 h-5" style={{ color: 'var(--color-accent-success)' }} />
                 10+ Diagnostic Checks
               </div>
               <div className="flex items-center gap-2">
-                <Brain className="w-5 h-5 text-[#A78BFA]" />
+                <Brain className="w-5 h-5" style={{ color: 'var(--color-accent-purple)' }} />
                 Gemini AI Powered
               </div>
               <div className="flex items-center gap-2">
-                <TrendingUp className="w-5 h-5 text-[#4F8EF7]" />
+                <TrendingUp className="w-5 h-5" style={{ color: 'var(--color-accent-primary)' }} />
                 0-100 Performance Score
               </div>
             </div>
@@ -207,8 +214,9 @@ export const LandingPage = () => {
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
           className="relative z-10 flex justify-center pb-8"
+          style={{ color: 'var(--color-text-secondary)' }}
         >
-          <div className="text-[#94A3B8] text-sm">Scroll to explore</div>
+          <div className="text-sm">Scroll to explore</div>
         </motion.div>
       </section>
 
@@ -216,7 +224,8 @@ export const LandingPage = () => {
       <section
         id="how-it-works"
         data-section
-        className="py-20 md:py-32 px-6 md:px-12 bg-[#0A0E1A]"
+        className="py-20 md:py-32 px-6 md:px-12"
+        style={{ background: 'var(--color-bg-primary)' }}
       >
         <motion.div
           initial={{ opacity: 0 }}
@@ -226,7 +235,7 @@ export const LandingPage = () => {
         >
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">How It Works</h2>
-            <p className="text-xl text-[#94A3B8]">
+            <p className="text-xl" style={{ color: 'var(--color-text-secondary)' }}>
               Get actionable insights in three simple steps
             </p>
           </div>
@@ -238,45 +247,33 @@ export const LandingPage = () => {
             className="grid md:grid-cols-3 gap-8"
           >
             {[
-              {
-                step: 1,
-                icon: Activity,
-                title: 'Upload Your CSV',
-                desc: 'Export your Google Ads campaign data and drop it here'
-              },
-              {
-                step: 2,
-                icon: Zap,
-                title: 'Run Diagnostics',
-                desc: 'Our engine runs 10+ checks automatically in seconds'
-              },
-              {
-                step: 3,
-                icon: TrendingUp,
-                title: 'Get Recommendations',
-                desc: 'Receive your score, flags, and AI-powered fixes instantly'
-              }
+              { step: 1, icon: Activity, title: 'Upload Your CSV', desc: 'Export your Google Ads campaign data and drop it here' },
+              { step: 2, icon: Zap, title: 'Run Diagnostics', desc: 'Our engine runs 10+ checks automatically in seconds' },
+              { step: 3, icon: TrendingUp, title: 'Get Recommendations', desc: 'Receive your score, flags, and AI-powered fixes instantly' }
             ].map((item, idx) => (
-              <motion.div
-                key={idx}
-                variants={itemVariants}
-                className="relative group"
-              >
+              <motion.div key={idx} variants={itemVariants} className="relative group">
                 {/* Step badge */}
-                <div className="absolute -top-6 -left-6 w-14 h-14 bg-gradient-to-br from-[#4F8EF7] to-[#A78BFA] rounded-full flex items-center justify-center text-xl font-bold shadow-lg">
+                <div className="absolute -top-6 -left-6 w-14 h-14 bg-gradient-to-br from-[var(--color-accent-primary)] to-[var(--color-accent-purple)] rounded-full flex items-center justify-center text-xl font-bold shadow-lg text-white">
                   {item.step}
                 </div>
 
                 {/* Card */}
-                <div className="pt-8 px-6 py-8 bg-[#111827] border border-[#1E2D45] rounded-xl hover:border-[#4F8EF7] transition-all duration-300 group-hover:shadow-xl group-hover:shadow-[#4F8EF7]/20">
-                  <item.icon className="w-12 h-12 text-[#4F8EF7] mb-4" />
+                <div
+                  className="pt-8 px-6 py-8 rounded-xl transition-all duration-300 group-hover:shadow-xl"
+                  style={{
+                    background: 'var(--color-bg-secondary)',
+                    borderColor: 'var(--color-border)',
+                    borderWidth: '1px'
+                  }}
+                >
+                  <item.icon className="w-12 h-12 mb-4" style={{ color: 'var(--color-accent-primary)' }} />
                   <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                  <p className="text-[#94A3B8]">{item.desc}</p>
+                  <p style={{ color: 'var(--color-text-secondary)' }}>{item.desc}</p>
                 </div>
 
-                {/* Connector line (except last) */}
+                {/* Connector line */}
                 {idx < 2 && (
-                  <div className="hidden md:block absolute top-1/2 -right-12 w-12 h-0.5 bg-gradient-to-r from-[#4F8EF7] to-transparent" />
+                  <div className="hidden md:block absolute top-1/2 -right-12 w-12 h-0.5 bg-gradient-to-r from-[var(--color-accent-primary)] to-transparent" />
                 )}
               </motion.div>
             ))}
@@ -288,7 +285,8 @@ export const LandingPage = () => {
       <section
         id="features"
         data-section
-        className="py-20 md:py-32 px-6 md:px-12 bg-[#111827]"
+        className="py-20 md:py-32 px-6 md:px-12"
+        style={{ background: 'var(--color-bg-secondary)' }}
       >
         <motion.div
           initial={{ opacity: 0 }}
@@ -298,7 +296,7 @@ export const LandingPage = () => {
         >
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Diagnostic Features</h2>
-            <p className="text-xl text-[#94A3B8]">
+            <p className="text-xl" style={{ color: 'var(--color-text-secondary)' }}>
               Comprehensive checks to optimize every aspect of your campaigns
             </p>
           </div>
@@ -310,45 +308,26 @@ export const LandingPage = () => {
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {[
-              {
-                icon: BarChart3,
-                title: 'CTR Benchmark Analysis',
-                desc: 'Compare your click-through rates against industry benchmarks'
-              },
-              {
-                icon: Target,
-                title: 'CPC vs Conversion Rate',
-                desc: 'Identify high-cost keywords with low conversion performance'
-              },
-              {
-                icon: AlertCircle,
-                title: 'Impression Share Loss',
-                desc: 'Detect budget and rank-based impression share losses'
-              },
-              {
-                icon: Activity,
-                title: 'Zero-Impression Detection',
-                desc: 'Find underperforming ad groups getting no impressions'
-              },
-              {
-                icon: CheckCircle2,
-                title: 'Quality Score Anomalies',
-                desc: 'Spot keywords with declining quality scores'
-              },
-              {
-                icon: TrendingUp,
-                title: 'Week-over-Week Anomalies',
-                desc: 'Detect unusual metric changes week to week'
-              }
+              { icon: BarChart3, title: 'CTR Benchmark Analysis', desc: 'Compare your click-through rates against industry benchmarks' },
+              { icon: Target, title: 'CPC vs Conversion Rate', desc: 'Identify high-cost keywords with low conversion performance' },
+              { icon: AlertCircle, title: 'Impression Share Loss', desc: 'Detect budget and rank-based impression share losses' },
+              { icon: Activity, title: 'Zero-Impression Detection', desc: 'Find underperforming ad groups getting no impressions' },
+              { icon: CheckCircle2, title: 'Quality Score Anomalies', desc: 'Spot keywords with declining quality scores' },
+              { icon: TrendingUp, title: 'Week-over-Week Anomalies', desc: 'Detect unusual metric changes week to week' }
             ].map((feature, idx) => (
               <motion.div
                 key={idx}
                 variants={itemVariants}
-                className="p-6 bg-[#0A0E1A] border border-[#1E2D45] rounded-xl hover:border-[#4F8EF7] hover:shadow-lg hover:shadow-[#4F8EF7]/10 transition-all duration-300"
+                className="p-6 rounded-xl transition-all duration-300"
+                style={{
+                  background: 'var(--color-bg-primary)',
+                  borderColor: 'var(--color-border)',
+                  borderWidth: '1px'
+                }}
               >
-                <feature.icon className="w-10 h-10 text-[#4F8EF7] mb-3" />
+                <feature.icon className="w-10 h-10 mb-3" style={{ color: 'var(--color-accent-primary)' }} />
                 <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
-                <p className="text-[#94A3B8] text-sm">{feature.desc}</p>
+                <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>{feature.desc}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -359,7 +338,8 @@ export const LandingPage = () => {
       <section
         id="score-showcase"
         data-section
-        className="py-20 md:py-32 px-6 md:px-12 bg-[#0A0E1A]"
+        className="py-20 md:py-32 px-6 md:px-12"
+        style={{ background: 'var(--color-bg-primary)' }}
       >
         <motion.div
           initial={{ opacity: 0 }}
@@ -371,7 +351,7 @@ export const LandingPage = () => {
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
               One Number That Tells You Everything
             </h2>
-            <p className="text-xl text-[#94A3B8] mb-4">
+            <p className="text-xl" style={{ color: 'var(--color-text-secondary)' }}>
               Your performance score combines four key metrics into a single, actionable score
             </p>
           </div>
@@ -396,40 +376,32 @@ export const LandingPage = () => {
             >
               <div>
                 <h3 className="font-bold text-lg mb-4">Score Breakdown</h3>
-                <p className="text-[#94A3B8] mb-6">
+                <p style={{ color: 'var(--color-text-secondary)' }} className="mb-6">
                   Each component is scored 0-25 points, totaling 100
                 </p>
               </div>
 
               <div className="space-y-4">
                 {[
-                  {
-                    label: 'CTR Score',
-                    desc: 'Click-through rate vs benchmark',
-                    color: 'bg-[#4F8EF7]'
-                  },
-                  {
-                    label: 'ROAS Score',
-                    desc: 'Return on ad spend performance',
-                    color: 'bg-[#34D399]'
-                  },
-                  {
-                    label: 'Conversion Score',
-                    desc: 'Conversion rate efficiency',
-                    color: 'bg-[#A78BFA]'
-                  },
-                  {
-                    label: 'Impression Share Score',
-                    desc: 'Search impression share gains',
-                    color: 'bg-[#FBBF24]'
-                  }
+                  { label: 'CTR Score', desc: 'Click-through rate vs benchmark', color: 'var(--color-accent-primary)' },
+                  { label: 'ROAS Score', desc: 'Return on ad spend performance', color: 'var(--color-accent-success)' },
+                  { label: 'Conversion Score', desc: 'Conversion rate efficiency', color: 'var(--color-accent-purple)' },
+                  { label: 'Impression Share Score', desc: 'Search impression share gains', color: 'var(--color-accent-warning)' }
                 ].map((item, idx) => (
-                  <div key={idx} className="bg-[#111827] p-4 rounded-lg border border-[#1E2D45]">
+                  <div
+                    key={idx}
+                    className="p-4 rounded-lg"
+                    style={{
+                      background: 'var(--color-bg-secondary)',
+                      borderColor: 'var(--color-border)',
+                      borderWidth: '1px'
+                    }}
+                  >
                     <div className="flex items-center gap-3 mb-2">
-                      <div className={`w-3 h-3 rounded-full ${item.color}`} />
+                      <div className="w-3 h-3 rounded-full" style={{ background: item.color }} />
                       <span className="font-semibold">{item.label}</span>
                     </div>
-                    <p className="text-sm text-[#94A3B8] ml-6">{item.desc}</p>
+                    <p className="text-sm ml-6" style={{ color: 'var(--color-text-secondary)' }}>{item.desc}</p>
                   </div>
                 ))}
               </div>
@@ -441,20 +413,22 @@ export const LandingPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={inViewSections['score-showcase'] ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-16 pt-8 border-t border-[#1E2D45]"
+            className="mt-16 pt-8"
+            style={{ borderTopColor: 'var(--color-border)', borderTopWidth: '1px' }}
           >
-            <p className="text-center text-[#94A3B8] mb-6">Score bands</p>
+            <p className="text-center mb-6" style={{ color: 'var(--color-text-secondary)' }}>Score bands</p>
             <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
               {[
-                { band: 'Critical', range: '0-19', color: 'bg-[#F87171]' },
-                { band: 'Poor', range: '20-39', color: 'bg-[#FB923C]' },
-                { band: 'Average', range: '40-59', color: 'bg-[#FBBF24]' },
-                { band: 'Good', range: '60-79', color: 'bg-[#34D399]' },
-                { band: 'Excellent', range: '80-100', color: 'bg-[#10B981]' }
+                { band: 'Critical', range: '0-19', color: 'var(--color-accent-critical)' },
+                { band: 'Poor', range: '20-39', color: '#FB923C' },
+                { band: 'Average', range: '40-59', color: 'var(--color-accent-warning)' },
+                { band: 'Good', range: '60-79', color: 'var(--color-accent-success)' },
+                { band: 'Excellent', range: '80-100', color: '#10B981' }
               ].map((item, idx) => (
                 <div
                   key={idx}
-                  className={`${item.color} px-4 py-3 rounded-lg text-center text-white font-semibold`}
+                  className="px-4 py-3 rounded-lg text-center text-white font-semibold"
+                  style={{ background: item.color }}
                 >
                   <div className="text-sm">{item.band}</div>
                   <div className="text-xs opacity-90">{item.range}</div>
@@ -469,7 +443,8 @@ export const LandingPage = () => {
       <section
         id="ai-preview"
         data-section
-        className="py-20 md:py-32 px-6 md:px-12 bg-[#111827]"
+        className="py-20 md:py-32 px-6 md:px-12"
+        style={{ background: 'var(--color-bg-secondary)' }}
       >
         <motion.div
           initial={{ opacity: 0 }}
@@ -481,7 +456,7 @@ export const LandingPage = () => {
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
               AI-Powered Recommendations
             </h2>
-            <p className="text-xl text-[#94A3B8]">
+            <p className="text-xl" style={{ color: 'var(--color-text-secondary)' }}>
               Gemini generates specific, actionable optimization steps for your account
             </p>
           </div>
@@ -490,7 +465,12 @@ export const LandingPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={inViewSections['ai-preview'] ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-[#0A0E1A] border border-[#1E2D45] rounded-xl p-8 shadow-xl hover:border-[#4F8EF7]/50 transition-all"
+            className="rounded-xl p-8 shadow-xl"
+            style={{
+              background: 'var(--color-bg-primary)',
+              borderColor: 'var(--color-border)',
+              borderWidth: '1px'
+            }}
           >
             {/* Header with badges */}
             <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
@@ -498,24 +478,31 @@ export const LandingPage = () => {
                 <h3 className="text-xl md:text-2xl font-bold mb-2">
                   Increase bids on high-intent keywords
                 </h3>
-                <p className="text-[#94A3B8]">bidding</p>
+                <p style={{ color: 'var(--color-text-secondary)' }}>bidding</p>
               </div>
               <div className="flex gap-2">
-                <div className="px-3 py-1 bg-[#F87171] text-white text-xs font-bold rounded-full">
+                <div className="px-3 py-1 rounded-full font-bold text-xs text-white" style={{ background: 'var(--color-accent-critical)' }}>
                   HIGH
                 </div>
-                <div className="px-3 py-1 bg-[#4F8EF7] text-white text-xs font-bold rounded-full">
+                <div className="px-3 py-1 rounded-full font-bold text-xs text-white" style={{ background: 'var(--color-accent-primary)' }}>
                   Bidding
                 </div>
               </div>
             </div>
 
-            <p className="text-[#94A3B8] mb-6">
+            <p style={{ color: 'var(--color-text-secondary)' }} className="mb-6">
               Your account is losing 30% impression share due to low Ad Rank. Increasing bids on keywords with high intent signals could recover up to 150K monthly impressions and potentially 3-5% CTR uplift based on your current performance metrics.
             </p>
 
-            <div className="bg-[#111827] rounded-lg p-4 mb-6">
-              <p className="font-semibold text-[#34D399] mb-2">✨ Expected Impact</p>
+            <div
+              className="rounded-lg p-4 mb-6"
+              style={{
+                background: 'var(--color-bg-secondary)',
+                borderColor: 'var(--color-border)',
+                borderWidth: '1px'
+              }}
+            >
+              <p className="font-semibold mb-2" style={{ color: 'var(--color-accent-success)' }}>✨ Expected Impact</p>
               <p>15-25% improvement in impression share, estimated +2.3M monthly impressions</p>
             </div>
 
@@ -527,30 +514,39 @@ export const LandingPage = () => {
                   'Create a new bidding strategy using Target CPA based on your conversions',
                   'Test 10-15% bid increases on converting keywords over 2 weeks'
                 ].map((step, idx) => (
-                  <label key={idx} className="flex items-start gap-3 p-2 hover:bg-[#1A2235] rounded transition-colors cursor-pointer">
+                  <label
+                    key={idx}
+                    className="flex items-start gap-3 p-2 rounded transition-colors cursor-pointer"
+                    style={{ color: 'var(--color-text-primary)' }}
+                  >
                     <input type="checkbox" className="mt-1" />
-                    <span className="text-[#F1F5F9]">{step}</span>
+                    <span>{step}</span>
                   </label>
                 ))}
               </div>
             </div>
 
-            <div className="mt-8 pt-6 border-t border-[#1E2D45] text-sm text-[#94A3B8]">
-              <div className="flex items-center gap-2">
-                <Brain className="w-4 h-4" />
-                <span>Powered by Gemini AI · Specific to your data · Instant generation</span>
-              </div>
+            <div
+              className="mt-8 pt-6 text-sm flex items-center gap-2"
+              style={{
+                borderTopColor: 'var(--color-border)',
+                borderTopWidth: '1px',
+                color: 'var(--color-text-secondary)'
+              }}
+            >
+              <Brain className="w-4 h-4" />
+              <span>Powered by Gemini AI · Specific to your data · Instant generation</span>
             </div>
           </motion.div>
 
-          <p className="text-center text-[#94A3B8] mt-8">
+          <p className="text-center mt-8" style={{ color: 'var(--color-text-secondary)' }}>
             You'll receive 5-8 recommendations like this, tailored to your specific account issues
           </p>
         </motion.div>
       </section>
 
       {/* ============ CTA SECTION ============ */}
-      <section className="py-16 md:py-24 px-6 md:px-12 bg-[#0A0E1A]">
+      <section className="py-16 md:py-24 px-6 md:px-12" style={{ background: 'var(--color-bg-primary)' }}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -561,14 +557,15 @@ export const LandingPage = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Ready to Optimize Your Campaigns?
           </h2>
-          <p className="text-xl text-[#94A3B8] mb-8">
+          <p className="text-xl mb-8" style={{ color: 'var(--color-text-secondary)' }}>
             Start with a free analysis. No credit card required.
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
             onClick={() => navigate('/register')}
-            className="px-8 py-4 bg-[#4F8EF7] text-white rounded-lg font-bold text-lg hover:bg-blue-600 transition-all shadow-lg inline-flex items-center gap-2"
+            className="px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-lg inline-flex items-center gap-2 text-white"
+            style={{ background: 'var(--color-accent-primary)' }}
           >
             Get Started Free
             <ArrowRight className="w-5 h-5" />
@@ -577,18 +574,25 @@ export const LandingPage = () => {
       </section>
 
       {/* ============ FOOTER ============ */}
-      <footer className="border-t border-[#1E2D45] bg-[#111827] py-16 px-6 md:px-12">
+      <footer
+        className="py-16 px-6 md:px-12"
+        style={{
+          background: 'var(--color-bg-secondary)',
+          borderTopColor: 'var(--color-border)',
+          borderTopWidth: '1px'
+        }}
+      >
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-4 gap-8 mb-12">
             {/* Brand */}
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#4F8EF7] to-[#A78BFA] flex items-center justify-center">
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--color-accent-primary)] to-[var(--color-accent-purple)] flex items-center justify-center">
                   <Activity className="w-6 h-6 text-white" />
                 </div>
                 <span className="text-lg font-bold">AdsPulse</span>
               </div>
-              <p className="text-[#94A3B8] text-sm">
+              <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
                 AI-powered Google Ads diagnostics engine
               </p>
             </div>
@@ -596,39 +600,19 @@ export const LandingPage = () => {
             {/* Product */}
             <div>
               <h4 className="font-bold mb-4">Product</h4>
-              <ul className="space-y-2 text-[#94A3B8] text-sm">
-                <li>
-                  <a href="#features" className="hover:text-[#F1F5F9] transition">
-                    Features
-                  </a>
-                </li>
-                <li>
-                  <a href="#how-it-works" className="hover:text-[#F1F5F9] transition">
-                    How It Works
-                  </a>
-                </li>
-                <li>
-                  <a href="#score-showcase" className="hover:text-[#F1F5F9] transition">
-                    Scoring
-                  </a>
-                </li>
+              <ul className="space-y-2 text-sm" style={{ color: 'var(--color-text-secondary)' }}>
+                <li><a href="#features" className="hover:opacity-80 transition">Features</a></li>
+                <li><a href="#how-it-works" className="hover:opacity-80 transition">How It Works</a></li>
+                <li><a href="#score-showcase" className="hover:opacity-80 transition">Scoring</a></li>
               </ul>
             </div>
 
             {/* Legal */}
             <div>
               <h4 className="font-bold mb-4">Legal</h4>
-              <ul className="space-y-2 text-[#94A3B8] text-sm">
-                <li>
-                  <a href="#" className="hover:text-[#F1F5F9] transition">
-                    Privacy Policy
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-[#F1F5F9] transition">
-                    Terms of Service
-                  </a>
-                </li>
+              <ul className="space-y-2 text-sm" style={{ color: 'var(--color-text-secondary)' }}>
+                <li><a href="#" className="hover:opacity-80 transition">Privacy Policy</a></li>
+                <li><a href="#" className="hover:opacity-80 transition">Terms of Service</a></li>
               </ul>
             </div>
 
@@ -638,13 +622,25 @@ export const LandingPage = () => {
               <div className="flex gap-4">
                 <a
                   href="#"
-                  className="w-10 h-10 bg-[#0A0E1A] border border-[#1E2D45] rounded-lg flex items-center justify-center text-[#94A3B8] hover:text-[#4F8EF7] hover:border-[#4F8EF7] transition-all"
+                  className="w-10 h-10 rounded-lg flex items-center justify-center transition-all"
+                  style={{
+                    background: 'var(--color-bg-primary)',
+                    borderColor: 'var(--color-border)',
+                    borderWidth: '1px',
+                    color: 'var(--color-text-secondary)'
+                  }}
                 >
                   <Github className="w-5 h-5" />
                 </a>
                 <a
                   href="#"
-                  className="w-10 h-10 bg-[#0A0E1A] border border-[#1E2D45] rounded-lg flex items-center justify-center text-[#94A3B8] hover:text-[#4F8EF7] hover:border-[#4F8EF7] transition-all"
+                  className="w-10 h-10 rounded-lg flex items-center justify-center transition-all"
+                  style={{
+                    background: 'var(--color-bg-primary)',
+                    borderColor: 'var(--color-border)',
+                    borderWidth: '1px',
+                    color: 'var(--color-text-secondary)'
+                  }}
                 >
                   <Twitter className="w-5 h-5" />
                 </a>
@@ -652,9 +648,16 @@ export const LandingPage = () => {
             </div>
           </div>
 
-          {/* Bottom */}
-          <div className="border-t border-[#1E2D45] pt-8 text-center text-[#94A3B8] text-sm">
-            <p>© 2024 AdsPulse. Built for Google Ads professionals.</p>
+          {/* Copyright */}
+          <div
+            className="pt-8 text-center text-sm"
+            style={{
+              borderTopColor: 'var(--color-border)',
+              borderTopWidth: '1px',
+              color: 'var(--color-text-secondary)'
+            }}
+          >
+            <p>&copy; 2024 AdsPulse. All rights reserved.</p>
           </div>
         </div>
       </footer>
@@ -667,9 +670,9 @@ export const LandingPage = () => {
           66% { transform: translate(-20px, 20px); }
         }
       `}</style>
+
     </div>
   );
 };
 
 export default LandingPage;
-

@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext.jsx';
 import { LogOut, BarChart3, Plus, History, FileText } from 'lucide-react';
+import ThemeToggle from '../ui/ThemeToggle.jsx';
 
 export const Sidebar = ({ onClose }) => {
   const { user, logout } = useAuth();
@@ -13,21 +14,32 @@ export const Sidebar = ({ onClose }) => {
   const navLinkClass = ({ isActive }) =>
     `flex items-center gap-3 px-4 py-3 rounded-lg transition-colors relative ${
       isActive
-        ? 'text-[#4F8EF7] bg-[#4F8EF7]/10'
-        : 'text-[#94A3B8] hover:text-[#F1F5F9] hover:bg-[#111827]'
+        ? 'text-[var(--color-accent-primary)] bg-[var(--color-accent-primary)]/10'
+        : 'text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg-secondary)]/30'
     }`;
 
   return (
-    <div className="h-full flex flex-col bg-[#0A0E1A] border-r border-[#1E2D45]">
+    <div 
+      className="h-full flex flex-col border-r"
+      style={{
+        background: 'var(--color-sidebar-bg)',
+        borderColor: 'var(--color-border)',
+      }}
+    >
       {/* Logo section */}
-      <div className="p-6 border-b border-[#1E2D45]">
+      <div 
+        className="p-6 border-b"
+        style={{ borderColor: 'var(--color-border)' }}
+      >
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-gradient-to-br from-[#4F8EF7] to-[#A78BFA] rounded-lg flex items-center justify-center">
+          <div 
+            className="w-8 h-8 bg-gradient-to-br from-[var(--color-accent-primary)] to-[var(--color-accent-purple)] rounded-lg flex items-center justify-center"
+          >
             <span className="text-white font-bold text-sm">AP</span>
           </div>
           <div className="flex flex-col">
-            <span className="font-bold text-[#F1F5F9]">AdsPulse</span>
-            <span className="text-xs text-[#475569]">Diagnostic Engine</span>
+            <span className="font-bold" style={{ color: 'var(--color-text-primary)' }}>AdsPulse</span>
+            <span className="text-xs" style={{ color: 'var(--color-text-secondary)' }}>Diagnostic Engine</span>
           </div>
         </div>
       </div>
@@ -35,7 +47,10 @@ export const Sidebar = ({ onClose }) => {
       {/* Navigation links */}
       <nav className="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
         <div className="mb-8">
-          <p className="text-xs font-semibold text-[#475569] uppercase tracking-wide mb-4 px-2">
+          <p 
+            className="text-xs font-semibold uppercase tracking-wide mb-4 px-2"
+            style={{ color: 'var(--color-text-secondary)' }}
+          >
             Main
           </p>
           <div className="space-y-1">
@@ -51,7 +66,10 @@ export const Sidebar = ({ onClose }) => {
         </div>
 
         <div>
-          <p className="text-xs font-semibold text-[#475569] uppercase tracking-wide mb-4 px-2">
+          <p 
+            className="text-xs font-semibold uppercase tracking-wide mb-4 px-2"
+            style={{ color: 'var(--color-text-secondary)' }}
+          >
             History
           </p>
           <div className="space-y-1">
@@ -67,19 +85,57 @@ export const Sidebar = ({ onClose }) => {
         </div>
       </nav>
 
-      {/* User profile + logout */}
-      <div className="p-6 border-t border-[#1E2D45] space-y-3">
-        <div className="px-4 py-3 bg-[#111827] rounded-lg border border-[#1E2D45]">
-          <p className="text-xs text-[#475569] mb-1">Logged in as</p>
-          <p className="text-sm font-medium text-[#F1F5F9] truncate">{user?.email}</p>
-          <p className="text-xs text-[#475569] mt-1 capitalize">
-            Plan: <span className="text-[#34D399]">{user?.plan || 'free'}</span>
+      {/* Theme Toggle + User profile + logout */}
+      <div 
+        className="p-6 border-t space-y-3"
+        style={{ borderColor: 'var(--color-border)' }}
+      >
+        {/* Theme Toggle */}
+        <div className="flex items-center gap-2 px-4 py-2">
+          <span 
+            className="text-xs font-semibold uppercase tracking-wide flex-1"
+            style={{ color: 'var(--color-text-secondary)' }}
+          >
+            Theme
+          </span>
+          <ThemeToggle />
+        </div>
+
+        {/* User profile card */}
+        <div 
+          className="px-4 py-3 rounded-lg border"
+          style={{
+            background: 'var(--color-bg-secondary)',
+            borderColor: 'var(--color-border)',
+          }}
+        >
+          <p 
+            className="text-xs mb-1"
+            style={{ color: 'var(--color-text-secondary)' }}
+          >
+            Logged in as
+          </p>
+          <p 
+            className="text-sm font-medium truncate"
+            style={{ color: 'var(--color-text-primary)' }}
+          >
+            {user?.email}
+          </p>
+          <p 
+            className="text-xs mt-1"
+            style={{ color: 'var(--color-text-secondary)' }}
+          >
+            Plan: <span style={{ color: 'var(--color-accent-success)' }}>{user?.plan || 'free'}</span>
           </p>
         </div>
 
+        {/* Logout button */}
         <button
           onClick={handleLogout}
-          className="w-full flex items-center gap-2 px-4 py-2 rounded-lg text-[#F87171] hover:bg-[#F87171]/10 transition-colors font-medium"
+          className="w-full flex items-center gap-2 px-4 py-2 rounded-lg transition-colors font-medium"
+          style={{
+            color: 'var(--color-accent-critical)',
+          }}
         >
           <LogOut className="w-4 h-4" />
           <span>Logout</span>

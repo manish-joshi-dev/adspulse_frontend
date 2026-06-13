@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
+import { useTheme } from '../../context/ThemeContext.jsx';
 
 /**
  * Animated SVG arc gauge showing performance score (0-100)
  * Used in landing page and app for visual score representation
+ * Supports light and dark themes
  */
 export const PerformanceGauge = ({ score = 75, size = 200, animated = true }) => {
   const [displayScore, setDisplayScore] = useState(animated ? 0 : score);
+  const { isDark } = useTheme();
   
   useEffect(() => {
     if (!animated) return;
@@ -27,10 +30,10 @@ export const PerformanceGauge = ({ score = 75, size = 200, animated = true }) =>
 
   // Determine color based on score
   const getColor = (val) => {
-    if (val < 20) return '#F87171'; // Critical - red
+    if (val < 20) return 'var(--color-accent-critical)'; // Critical - red
     if (val < 40) return '#FB923C'; // Poor - orange
-    if (val < 60) return '#FBBF24'; // Average - amber
-    if (val < 80) return '#34D399'; // Good - green
+    if (val < 60) return 'var(--color-accent-warning)'; // Average - amber
+    if (val < 80) return 'var(--color-accent-success)'; // Good - green
     return '#10B981'; // Excellent - emerald
   };
 
@@ -47,6 +50,7 @@ export const PerformanceGauge = ({ score = 75, size = 200, animated = true }) =>
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference * (1 - displayScore / 100);
   const color = getColor(displayScore);
+  const bgArcColor = isDark ? '#1E2D45' : '#E2E8F0';
 
   return (
     <div className="flex flex-col items-center gap-3">
@@ -55,7 +59,7 @@ export const PerformanceGauge = ({ score = 75, size = 200, animated = true }) =>
           width={size}
           height={size}
           className="transform -rotate-90"
-          style={{ filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.3))' }}
+          style={{ filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.15))' }}
         >
           {/* Background arc */}
           <circle
@@ -63,7 +67,7 @@ export const PerformanceGauge = ({ score = 75, size = 200, animated = true }) =>
             cy={size / 2}
             r={radius}
             fill="none"
-            stroke="#1E2D45"
+            stroke={bgArcColor}
             strokeWidth="8"
             strokeLinecap="round"
           />
@@ -87,8 +91,8 @@ export const PerformanceGauge = ({ score = 75, size = 200, animated = true }) =>
         
         {/* Center text */}
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <div className="text-4xl font-bold text-[#F1F5F9]">{displayScore}</div>
-          <div className="text-xs font-semibold text-[#94A3B8]">/ 100</div>
+          <div className="text-4xl font-bold" style={{ color: 'var(--color-text-primary)' }}>{displayScore}</div>
+          <div className="text-xs font-semibold" style={{ color: 'var(--color-text-secondary)' }}>/ 100</div>
         </div>
       </div>
       
